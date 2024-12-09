@@ -5,25 +5,25 @@ import org.kubo.Utils.ParseUtils;
 public class Solution {
 
     public static void main(String[] args) {
-        System.out.println(wiggleMaxLength(ParseUtils.strToIntArr("[1,17,5,10,13,15,10,5,16,8]")
-        ));
+        System.out.println(maxSubArray(ParseUtils.strToIntArr("[-1,-2,-3]")));
     }
 
-    public static int wiggleMaxLength(int[] nums) {
-        int length = 1;
-        //当前差值
-        int curDiff = 0;
-        //上一个差值
-        int preDiff = 0;
-        for (int i = 0; i < nums.length - 1; i++) {
-            curDiff = nums[i] - nums[i + 1];
-            //如果当前差值和上一个差值为一正一负
-            //等于0的情况表示初始时的preDiff
-            if ((curDiff > 0 && preDiff <= 0) || (curDiff < 0 && preDiff >= 0)) {
-                length++;
-                preDiff = curDiff;
-            }
+    public static int maxSubArray(int[] nums) {
+        if (nums.length == 1) {
+            return nums[0];
         }
-        return length;
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum = sum + nums[i];
+            max = Math.max(max, sum);
+            if (sum  <= 0) {
+                sum = 0;
+            } 
+           
+        }
+        return max;
     }
+
+
 }
