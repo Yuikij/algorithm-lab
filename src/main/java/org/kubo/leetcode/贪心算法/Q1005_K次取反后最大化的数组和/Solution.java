@@ -9,7 +9,7 @@ public class Solution {
     public static void main(String[] args) {
         System.out.println(
                 largestSumAfterKNegations(
-                        ParseUtils.strToIntArr("[4,2,3]"),1));
+                        ParseUtils.strToIntArr("[-5,-3,-1,5,-4]"),4));
     }
 
     /**
@@ -17,10 +17,18 @@ public class Solution {
      */
     public static int largestSumAfterKNegations(int[] nums, int k) {
         Arrays.sort(nums);
-        for (int i = 0; i < k; i++) {
-
+        for (int i = 0; i < nums.length&&k>0; i++) {
+            if (nums[i]<0) {
+                nums[i]=-nums[i];
+                k--;
+            }
         }
-        return 0;
+        if (k>0) {
+            Arrays.sort(nums);
+            nums[0]=k%2==1?-nums[0]:nums[0];
+        }
+        
+        return Arrays.stream(nums).sum();
     }
 
 
