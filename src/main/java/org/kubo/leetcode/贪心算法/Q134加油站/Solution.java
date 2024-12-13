@@ -6,8 +6,8 @@ public class Solution {
 
     public static void main(String[] args) {
         System.out.println(canCompleteCircuit(
-                ParseUtils.strToIntArr("[2,3,4]")
-                , ParseUtils.strToIntArr("[3,4,3]")));
+                ParseUtils.strToIntArr("[1,1,3]")
+                , ParseUtils.strToIntArr("[2,2,3]")));
     }
 
     /**
