@@ -25,6 +25,16 @@ public class ParseUtils {
         }
     }
 
+    public static int[][] convertStringToIntArray(String str) {
+        // 去除首尾的方括号
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(str, int[][].class);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(strToStrArr("[1,2,3]")));
     }
