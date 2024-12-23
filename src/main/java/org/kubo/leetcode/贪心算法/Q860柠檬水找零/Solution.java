@@ -5,41 +5,41 @@ import org.kubo.Utils.ParseUtils;
 public class Solution {
 
     public static void main(String[] args) {
-        System.out.println(candy(
-                ParseUtils.strToIntArr("[1,6,10,8,7,3,2]")));
+        System.out.println(lemonadeChange(
+                ParseUtils.strToIntArr("[5,5,5,5,20,20,5,5,20,5]")));
     }
 
     /**
-     * 思路：一遍解决不了。遍历两遍
+     *
      */
-    public static int candy(int[] ratings) {
-        int num = 1;
-        int current = 1;
-        int min = 1;
-        int segmentation = 1;
-        for (int i = 0; i < ratings.length - 1; i++) {
-            if (ratings[i] > ratings[i + 1] && current - 1 <= 0) {
-                current = current - 1;
-                segmentation++;
-                min = Math.min(min, current);
-            } else if (ratings[i] >= ratings[i + 1]) {
-                //补偿
-                current = 1;
-                if (min < 1) {
-                    num = num + (1 - min) * segmentation;
+    public static boolean lemonadeChange(int[] bills) {
+        int remaining10 = 0;
+        int remaining5 = 0;
+        for (int bill : bills) {
+            if (bill == 20) {
+                if (remaining10 > 0) {
+                    remaining10 -= 10;
+                    remaining5 -= 5;
+                } else {
+                    remaining5 -= 15;
                 }
-                segmentation = 1;
-            } else {
-                current = current + 1;
-                segmentation++;
+            }
+            if (bill == 10) {
+                remaining5 -= 5;
             }
 
-            num = num + current;
+            if (remaining5 < 0) {
+                return false;
+            }
+
+            if (bill == 5) {
+                remaining5 += 5;
+            }
+            if (bill == 10) {
+                remaining10 += bill;
+            }
         }
-        if (min < 1) {
-            num = num + (1 - min) * segmentation;
-        }
-        return num;
+        return true;
     }
 
 }
