@@ -10,6 +10,7 @@ public class Solution {
      * 思路：
      */
     public static int numTrees(int n) {
+        int dp[] = new int[n + 1];
         return 0;
     }
 }
