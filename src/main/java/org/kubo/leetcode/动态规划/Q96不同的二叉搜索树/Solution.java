@@ -8,6 +8,7 @@ public class Solution {
 
     /**
      * 思路：
+     * 1. n是什么
      */
     public static int numTrees(int n) {
         int dp[] = new int[n + 1];
